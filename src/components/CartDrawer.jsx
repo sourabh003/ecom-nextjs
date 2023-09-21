@@ -39,13 +39,16 @@ export default function CartDrawer() {
 						<div className="ml-4 text-xl">Cart</div>
 					</div>
 					<hr className="p-0 m-0" />
-					<div className="p-5 flex-grow">
+					<div className="p-5 flex-grow overflow-scroll">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
 						mollitia, molestiae quas vel sint commodi repudiandae consequuntur
 						voluptatum laborum numquam blanditiis harum quisquam eius sed odit
 						fugiat iusto fuga praesentium optio, eaque rerum! Provident
 						similique accusantium nemo autem. Veritatis obcaecati tenetur iure
-						eius earum ut molest
+						eius earum ut molest Lorem ipsum dolor sit amet consectetur
+						adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi
+						repudiandae consequuntur voluptatum laborum numquam blanditiis harum
+						quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque
 					</div>
 					<div className="p-4 bg-black text-white flex justify-between">
 						<div>
