@@ -108,3 +108,4 @@ export const dynamicTitle = (path) => {
 	};
 	return titles[path];
 };
+

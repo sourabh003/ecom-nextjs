@@ -20,11 +20,10 @@ export default function CustomButton({
 				"text-white",
 				"py-2",
 				"px-4",
-				"rounded-full",
 				{ "bg-blue-500": variant === "primary" },
 				{ "hover:bg-blue-700": variant === "primary" && !disabled && !loading },
 				{ "bg-gray-300 text-white cursor-not-allowed": disabled || loading },
-				{ ...className }
+				className
 			)}
 			{...rest}
 		>
