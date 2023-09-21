@@ -21,6 +21,7 @@ export default function Search() {
 			<div className="flex items-center appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 bg-gray-200">
 				<FaSearch />
 				<input
+					autoComplete="off"
 					className="w-full bg-gray-200 ml-5 focus:outline-none"
 					id="inline-full-name"
 					type="text"

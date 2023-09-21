@@ -7,9 +7,13 @@ export default function CustomButton({
 	loading = false,
 	disabled = false,
 	children,
+	onClick = () => {},
+	className = "",
+	...rest
 }) {
 	return (
 		<button
+			onClick={onClick}
 			disabled={loading || disabled}
 			className={classNames(
 				"ml-5",
@@ -19,8 +23,10 @@ export default function CustomButton({
 				"rounded-full",
 				{ "bg-blue-500": variant === "primary" },
 				{ "hover:bg-blue-700": variant === "primary" && !disabled && !loading },
-				{ "bg-gray-300 text-white cursor-not-allowed": disabled || loading }
+				{ "bg-gray-300 text-white cursor-not-allowed": disabled || loading },
+				{ ...className }
 			)}
+			{...rest}
 		>
 			{loading ? <Loader small /> : children}
 		</button>
