@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
-import Loader from "./Loader";
 
 export default function Search() {
 	const [searchString, setSearchString] = useState("");

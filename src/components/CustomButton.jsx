@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import Loader from "./Loader";
+import { Loader } from "rsuite";
 
 export default function CustomButton({
 	variant = "primary",
@@ -16,7 +16,10 @@ export default function CustomButton({
 			onClick={onClick}
 			disabled={loading || disabled}
 			className={classNames(
-				"ml-5",
+                "ml-5",
+                "flex",
+                "items-center",
+                "justify-center",
 				"text-white",
 				"py-2",
 				"px-4",
@@ -27,7 +30,7 @@ export default function CustomButton({
 			)}
 			{...rest}
 		>
-			{loading ? <Loader small /> : children}
+			{loading ? <Loader size="sm" /> : children}
 		</button>
 	);
 }

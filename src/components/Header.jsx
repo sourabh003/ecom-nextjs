@@ -74,7 +74,7 @@ export default function Header() {
 						<FaAngleDown />
 					</div>
 				) : (
-					<CustomButton className="rounded-xl" onClick={handleLogin}>
+					<CustomButton className="rounded-xl w-20" onClick={handleLogin}>
 						Login
 					</CustomButton>
 				)}
