@@ -1,18 +1,19 @@
 import classNames from "classnames";
-import React from "react";
 import {
 	FaShoppingCart,
 	FaAngleDown,
-	FaUserAlt,
 	FaArrowLeft,
+	FaUser,
+	FaHeart,
 } from "react-icons/fa";
 import Search from "./Search";
-import CustomButton from "./CustomButton";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "@/redux/actions/auth";
 import { SET_USER } from "@/redux/types/auth";
 import { TOGGLE_CART_DRAWER } from "@/redux/types/cart";
 import { useRouter } from "next/router";
+import { Badge } from "rsuite";
+import { OPEN_MODAL } from "@/redux/types/common";
+import { LOGIN_MODAL } from "./CustomModal";
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -20,32 +21,36 @@ export default function Header() {
 	const { user, isLoggedIn = false } = useSelector((state) => state.auth);
 
 	const handleLogin = () => {
-		console.log("test");
 		const payload = {
 			user: {
 				name: "Sourabh",
 			},
 			token: "asdf",
 		};
-		dispatch({ type: SET_USER, payload });
+		// dispatch({ type: SET_USER, payload });
+		dispatch({ type: OPEN_MODAL, payload: { modal: LOGIN_MODAL } });
 	};
 
 	const onCartClick = () => {
 		dispatch({ type: TOGGLE_CART_DRAWER });
 	};
 
+	const handleProfileClick = () => {
+		alert("test");
+	};
+
 	return (
 		<div
 			className={classNames(
 				"cus-container",
-				"bg-black",
-				"text-white",
-				"p-5",
+				"py-3",
+				"px-5",
 				"flex-wrap",
 				"flex",
 				"justify-between",
 				"items-center",
-				"box-border"
+				"box-border",
+				"shadow"
 			)}
 		>
 			<div className="flex items-center">
@@ -54,7 +59,11 @@ export default function Header() {
 						<FaArrowLeft />
 					</button>
 				)}
-				<div>Logo</div>
+				<div className="flex items-center">
+					<div className="text-3xl logo-text ml-2 font-bold">
+						E<span className="text-secondary">C</span>OM
+					</div>
+				</div>
 			</div>
 			{router.pathname !== "/checkout" && (
 				<div className="hidden lg:block lg:w-6/12">
@@ -62,21 +71,28 @@ export default function Header() {
 				</div>
 			)}
 			<div className="flex items-center pointer">
+				<div
+					className="flex items-center rounded-xl hover:text-black transition 300"
+					onClick={!isLoggedIn ? handleLogin : handleProfileClick}
+				>
+					{isLoggedIn ? (
+						<>
+							<FaUser size={20} />
+							<div className="px-2 text-md">{user.name}</div>
+							<FaAngleDown />
+						</>
+					) : (
+						<>
+							<FaUser size={20} />
+							<div className="text-md ml-2 sm:block hidden">Login</div>
+						</>
+					)}
+				</div>
+				<button className="ml-5" onClick={() => router.push("/wishlist")}>
+					<FaHeart size={20} />
+				</button>
 				{router.pathname !== "/checkout" && (
-					<button onClick={onCartClick}>
-						<FaShoppingCart />
-					</button>
-				)}
-				{isLoggedIn ? (
-					<div className="flex items-center ml-5 border-solid border p-2 rounded-xl">
-						<FaUserAlt />
-						<div className="px-2">{user.name}</div>
-						<FaAngleDown />
-					</div>
-				) : (
-					<CustomButton className="rounded-xl w-20" onClick={handleLogin}>
-						Login
-					</CustomButton>
+					<CartButton className="ml-5" onClick={onCartClick} />
 				)}
 			</div>
 			{router.pathname !== "/checkout" && (
@@ -87,3 +103,19 @@ export default function Header() {
 		</div>
 	);
 }
+
+const CartButton = ({ count = 0, onClick, className }) => {
+	if (count === 0)
+		return (
+			<button onClick={onClick} className={className}>
+				<FaShoppingCart size={20} />
+			</button>
+		);
+	return (
+		<Badge content={count}>
+			<button onClick={onClick} className={className}>
+				<FaShoppingCart size={20} />
+			</button>
+		</Badge>
+	);
+};

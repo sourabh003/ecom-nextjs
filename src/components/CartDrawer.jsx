@@ -24,12 +24,12 @@ export default function CartDrawer() {
 	return (
 		<div className="w-full">
 			<Drawer
-				size={isMobile ? "full" : "xs"}
 				backdrop={true}
 				open={isCartDrawerOpen}
 				onClose={handleClose}
 				keyboard
-				autoFocus
+                autoFocus
+                className="cart-sidebar"
 			>
 				<div className="flex flex-col relative h-full">
 					<div className="flex items-center p-5">
@@ -57,7 +57,7 @@ export default function CartDrawer() {
 						</div>
 						<CustomButton
 							onClick={handleCheckout}
-							className="rounded flex items-center"
+							className="rounded flex items-center px-5"
 						>
 							Checkout <FaArrowRight className="ml-3" />
 						</CustomButton>

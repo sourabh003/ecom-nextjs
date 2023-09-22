@@ -16,15 +16,15 @@ export default function CustomButton({
 			onClick={onClick}
 			disabled={loading || disabled}
 			className={classNames(
-                "ml-5",
-                "flex",
-                "items-center",
-                "justify-center",
+				"flex",
+				"items-center",
+				"justify-center",
 				"text-white",
-				"py-2",
-				"px-4",
+				"transition 300",
 				{ "bg-blue-500": variant === "primary" },
 				{ "hover:bg-blue-700": variant === "primary" && !disabled && !loading },
+				{ "bg-black": variant === "dark" },
+				{ "hover:bg-gray-900": variant === "dark" && !disabled && !loading },
 				{ "bg-gray-300 text-white cursor-not-allowed": disabled || loading },
 				className
 			)}

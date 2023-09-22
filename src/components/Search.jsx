@@ -18,10 +18,10 @@ export default function Search() {
 	return (
 		<div className="relative">
 			<div className="flex items-center appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 bg-gray-200">
-				<FaSearch />
+				<FaSearch size={20} />
 				<input
 					autoComplete="off"
-					className="w-full bg-gray-200 ml-5 focus:outline-none"
+					className="w-full bg-gray-200 ml-5 focus:outline-none p-1"
 					id="inline-full-name"
 					type="text"
 					value={searchString}
