@@ -22,7 +22,6 @@ export default function Search() {
 				<input
 					autoComplete="off"
 					className="w-full bg-gray-200 ml-5 focus:outline-none p-1"
-					id="inline-full-name"
 					type="text"
 					value={searchString}
 					placeholder="Search product, category or brand"

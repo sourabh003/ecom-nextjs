@@ -7,13 +7,17 @@ import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
 import NextNprogress from "nextjs-progressbar";
 import "rsuite/dist/rsuite.min.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { OPEN_MODAL } from "@/redux/types/common";
 
 const App = ({ Component, pageProps }) => {
 	const router = useRouter();
+	const dispatch = useDispatch();
 
 	return (
 		<>
-			<NextNprogress />
+			<NextNprogress options={{ showSpinner: false }} />
 			<Header />
 			<Component {...pageProps} />
 			<Toaster position="top-right" reverseOrder={false} />

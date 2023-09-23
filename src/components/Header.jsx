@@ -21,14 +21,16 @@ export default function Header() {
 	const { user, isLoggedIn = false } = useSelector((state) => state.auth);
 
 	const handleLogin = () => {
-		const payload = {
-			user: {
-				name: "Sourabh",
-			},
-			token: "asdf",
-		};
-		// dispatch({ type: SET_USER, payload });
-		dispatch({ type: OPEN_MODAL, payload: { modal: LOGIN_MODAL } });
+		// const payload = {
+		// 	user: {
+		// 		name: "Sourabh",
+		// 	},
+		// 	token: "asdf",
+		// };
+		dispatch({
+			type: OPEN_MODAL,
+			payload: { modal: LOGIN_MODAL, modalData: { formType: "login" } },
+		});
 	};
 
 	const onCartClick = () => {
@@ -56,7 +58,7 @@ export default function Header() {
 			<div className="flex items-center">
 				{router.pathname !== "/" && (
 					<button className="mr-4" onClick={() => router.back()}>
-						<FaArrowLeft />
+						<FaArrowLeft size={20} />
 					</button>
 				)}
 				<div className="flex items-center">
@@ -88,9 +90,11 @@ export default function Header() {
 						</>
 					)}
 				</div>
-				<button className="ml-5" onClick={() => router.push("/wishlist")}>
-					<FaHeart size={20} />
-				</button>
+				{router.pathname !== "/wishlist" && (
+					<button className="ml-5" onClick={() => router.push("/wishlist")}>
+						<FaHeart size={20} />
+					</button>
+				)}
 				{router.pathname !== "/checkout" && (
 					<CartButton className="ml-5" onClick={onCartClick} />
 				)}
