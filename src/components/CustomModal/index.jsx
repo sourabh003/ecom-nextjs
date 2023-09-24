@@ -71,12 +71,11 @@ const ModalWrapper = ({
 	return (
 		<Modal open={open} onClose={onClose} backdrop={backdrop}>
 			{showCloseButton && (
-				<button
-					onClick={onClose}
-					className="flex w-full justify-end mb-3 pointer"
-				>
-					<FaTimes />
-				</button>
+				<div className="flex justify-end">
+					<button onClick={onClose} className="justify-end mb-3 icon-button">
+						<FaTimes />
+					</button>
+				</div>
 			)}
 			<Component {...modalData} />
 		</Modal>

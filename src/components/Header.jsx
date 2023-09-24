@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import { Badge } from "rsuite";
 import { OPEN_MODAL } from "@/redux/types/common";
 import { LOGIN_MODAL } from "./CustomModal";
+import Link from "next/link";
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -62,9 +63,12 @@ export default function Header() {
 					</button>
 				)}
 				<div className="flex items-center">
-					<div className="text-3xl logo-text ml-2 font-bold">
+					<Link
+						href="/"
+						className="hover:no-underline text-gray-500 hover:text-gray-500 text-3xl logo-text ml-2 font-bold"
+					>
 						E<span className="text-secondary">C</span>OM
-					</div>
+					</Link>
 				</div>
 			</div>
 			{router.pathname !== "/checkout" && (

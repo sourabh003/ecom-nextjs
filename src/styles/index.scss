@@ -68,6 +68,15 @@ body {
 	}
 }
 
+.icon-button {
+	padding: 0.5rem;
+	border-radius: 50px;
+	transition: 300ms;
+	&:hover {
+		background-color: rgb(222, 226, 228);
+	}
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 	.cart-sidebar {

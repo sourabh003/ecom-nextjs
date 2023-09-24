@@ -3,6 +3,7 @@ import React from "react";
 import { Loader } from "rsuite";
 
 export default function CustomButton({
+	type = "button",
 	variant = "primary",
 	loading = false,
 	disabled = false,
@@ -14,6 +15,7 @@ export default function CustomButton({
 	return (
 		<button
 			onClick={onClick}
+			type={type}
 			disabled={loading || disabled}
 			className={classNames(
 				"flex",

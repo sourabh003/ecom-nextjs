@@ -28,12 +28,12 @@ export default function CartDrawer() {
 				open={isCartDrawerOpen}
 				onClose={handleClose}
 				keyboard
-                autoFocus
-                className="cart-sidebar"
+				autoFocus
+				className="cart-sidebar"
 			>
 				<div className="flex flex-col relative h-full">
 					<div className="flex items-center p-5">
-						<button onClick={handleClose}>
+						<button className="icon-button" onClick={handleClose}>
 							<FaTimes />
 						</button>
 						<div className="ml-4 text-xl">Cart</div>
