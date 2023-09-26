@@ -84,7 +84,7 @@ export default function Header() {
 					{isLoggedIn ? (
 						<>
 							<FaUser size={20} />
-							<div className="px-2 text-md">{user.name}</div>
+							<div className="px-2 text-md">{user.firstName}</div>
 							<FaAngleDown />
 						</>
 					) : (

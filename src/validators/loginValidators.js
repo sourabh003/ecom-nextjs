@@ -17,13 +17,13 @@ export const validateSignup = (data) => {
 	let isValid = true,
 		errors = {};
 
-	if (!data.firstname || data.firstname === "") {
+	if (!data.firstName || data.firstName === "") {
 		isValid = false;
-		errors.firstname = "Required!";
+		errors.firstName = "Required!";
 	}
-	if (!data.lastname || data.lastname === "") {
+	if (!data.lastName || data.lastName === "") {
 		isValid = false;
-		errors.lastname = "Required!";
+		errors.lastName = "Required!";
 	}
 	if (!data.email || data.email === "") {
 		isValid = false;

@@ -10,10 +10,20 @@ import "rsuite/dist/rsuite.min.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { OPEN_MODAL } from "@/redux/types/common";
+import { getData } from "@/utils";
+import { USER } from "@/utils/constants";
+import { SET_USER } from "@/redux/types/auth";
 
 const App = ({ Component, pageProps }) => {
 	const router = useRouter();
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const user = getData(USER);
+		if (user) {
+			dispatch({ type: SET_USER, payload: user });
+		}
+	}, []);
 
 	return (
 		<>
