@@ -15,7 +15,7 @@ import { Badge, Button, Dropdown } from "rsuite";
 import { OPEN_MODAL } from "@/redux/types/common";
 import { LOGIN_MODAL, LOGOUT_MODAL } from "./CustomModal";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -39,9 +39,9 @@ export default function Header() {
 		dispatch({ type: TOGGLE_CART_DRAWER });
 	};
 
-	const handleProfileClick = () => {
-		alert("test");
-	};
+	const searchBarVisible = useMemo(() => {
+		return ["/"].includes(router.pathname);
+	}, [router.pathname]);
 
 	return (
 		<div
@@ -72,7 +72,7 @@ export default function Header() {
 					</Link>
 				</div>
 			</div>
-			{router.pathname !== "/checkout" && (
+			{searchBarVisible && (
 				<div className="hidden lg:block lg:w-6/12">
 					<Search />
 				</div>
@@ -98,7 +98,7 @@ export default function Header() {
 					<CartButton className="ml-5" onClick={onCartClick} />
 				)}
 			</div>
-			{router.pathname !== "/checkout" && (
+			{searchBarVisible && (
 				<div className="lg:hidden w-full mt-5">
 					<Search />
 				</div>
