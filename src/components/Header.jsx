@@ -11,10 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { SET_USER } from "@/redux/types/auth";
 import { TOGGLE_CART_DRAWER } from "@/redux/types/cart";
 import { useRouter } from "next/router";
-import { Badge } from "rsuite";
+import { Badge, Button, Dropdown } from "rsuite";
 import { OPEN_MODAL } from "@/redux/types/common";
-import { LOGIN_MODAL } from "./CustomModal";
+import { LOGIN_MODAL, LOGOUT_MODAL } from "./CustomModal";
 import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -77,23 +78,17 @@ export default function Header() {
 				</div>
 			)}
 			<div className="flex items-center pointer">
-				<div
-					className="flex items-center rounded-xl hover:text-black transition 300"
-					onClick={!isLoggedIn ? handleLogin : handleProfileClick}
-				>
-					{isLoggedIn ? (
-						<>
-							<FaUser size={20} />
-							<div className="px-2 text-md">{user.firstName}</div>
-							<FaAngleDown />
-						</>
-					) : (
-						<>
-							<FaUser size={20} />
-							<div className="text-md ml-2 sm:block hidden">Login</div>
-						</>
-					)}
-				</div>
+				{isLoggedIn ? (
+					<UserButton label={user.firstName} />
+				) : (
+					<div
+						className="flex items-center rounded-xl hover:text-black transition 300"
+						onClick={handleLogin}
+					>
+						<FaUser size={20} />
+						<div className="px-2 text-md">Login</div>
+					</div>
+				)}
 				{router.pathname !== "/wishlist" && (
 					<button className="ml-5" onClick={() => router.push("/wishlist")}>
 						<FaHeart size={20} />
@@ -111,6 +106,51 @@ export default function Header() {
 		</div>
 	);
 }
+
+const UserButton = ({ label }) => {
+	const [isMenuOpen, toggleMenu] = useState(false);
+	const dispatch = useDispatch();
+	const router = useRouter();
+
+	const handleLogout = () => {
+		dispatch({ type: OPEN_MODAL, payload: { modal: LOGOUT_MODAL } });
+	};
+
+	const handleMenuItemClick = (isLink, path, action) => {
+		toggleMenu(false);
+		if (isLink) return router.push(path);
+		action();
+	};
+
+	const menuOptions = [
+		{ label: "Logout", action: handleLogout },
+		{ label: "Account", isLink: true, path: "/account" },
+		{ label: "Orders", isLink: true, path: "/orders" },
+	];
+
+	return (
+		<Dropdown
+			open={isMenuOpen}
+			onToggle={(open) => toggleMenu(open)}
+			title={
+				<div className="flex items-center rounded-xl hover:text-black transition 300">
+					<FaUser size={20} />
+					<div className="text-md ml-2 sm:block hidden">{label}</div>
+				</div>
+			}
+		>
+			{menuOptions.map(({ label, isLink, path, action }) => (
+				<Dropdown.Item>
+					<div className="block">
+						<button onClick={() => handleMenuItemClick(isLink, path, action)}>
+							{label}
+						</button>
+					</div>
+				</Dropdown.Item>
+			))}
+		</Dropdown>
+	);
+};
 
 const CartButton = ({ count = 0, onClick, className }) => {
 	if (count === 0)

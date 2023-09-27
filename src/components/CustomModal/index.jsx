@@ -1,10 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "rsuite";
 import Login from "./modals/Login";
 import { CLOSE_MODAL, OPEN_MODAL } from "@/redux/types/common";
 import { FaTimes } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { getData } from "@/utils";
+import { USER } from "@/utils/constants";
+import Logout from "./modals/Logout";
 
 export default function CustomModal() {
 	const dispatch = useDispatch();
@@ -35,7 +38,9 @@ export default function CustomModal() {
 			: routerPath.includes("signup")
 			? "signup"
 			: null;
-		if (formType) {
+
+		const user = getData(USER);
+		if (formType && !user) {
 			dispatch({
 				type: OPEN_MODAL,
 				payload: { modal: LOGIN_MODAL, modalData: { formType } },
@@ -52,6 +57,16 @@ export default function CustomModal() {
 					open={open}
 					onClose={onClose}
 					showCloseButton
+				/>
+			);
+
+		case LOGOUT_MODAL:
+			return (
+				<ModalWrapper
+					component={Logout}
+					modalData={modalData}
+					open={open}
+					onClose={onClose}
 				/>
 			);
 
@@ -77,9 +92,10 @@ const ModalWrapper = ({
 					</button>
 				</div>
 			)}
-			<Component {...modalData} />
+			<Component {...modalData} onClose={onClose} />
 		</Modal>
 	);
 };
 
 export const LOGIN_MODAL = "LOGIN_MODAL";
+export const LOGOUT_MODAL = "LOGOUT_MODAL";

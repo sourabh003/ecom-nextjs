@@ -1,4 +1,4 @@
-import { setData } from "@/utils";
+import { removeData, removeMultipleData, setData } from "@/utils";
 import * as types from "@/redux/types/auth";
 import { TOKEN, USER } from "@/utils/constants";
 
@@ -33,6 +33,10 @@ export default function authReducer(state = initialState, action) {
 		case types.USER_LOGIN_FAILED:
 		case types.USER_SIGNUP_FAILED:
 			return { ...state, isLoading: false };
+
+		case types.USER_LOGOUT:
+			removeMultipleData([USER, TOKEN]);
+			return { ...state, user: null, isLoggedIn: false };
 
 		default:
 			return { ...state };

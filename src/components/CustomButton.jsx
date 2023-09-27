@@ -25,6 +25,10 @@ export default function CustomButton({
 				"transition 300",
 				{ "bg-blue-500": variant === "primary" },
 				{ "hover:bg-blue-700": variant === "primary" && !disabled && !loading },
+				{ "bg-white text-black": variant === "secondary" },
+				{
+					"hover:bg-gray-300": variant === "secondary" && !disabled && !loading,
+				},
 				{ "bg-black": variant === "dark" },
 				{ "hover:bg-gray-900": variant === "dark" && !disabled && !loading },
 				{ "bg-gray-300 text-white cursor-not-allowed": disabled || loading },
