@@ -11,9 +11,12 @@ module.exports = {
 	theme: {
 		extend: {
 			width: {
+				"50vw": "50vw",
+				"100vw": "100vw",
+			},
+			height: {
 				"50vh": "50vh",
 				"100vh": "100vh",
-				"100vw": "100vw",
 			},
 			textColor: {
 				primary: "#5578FC",
