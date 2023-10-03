@@ -44,7 +44,7 @@ export default function SingleProductPage({ product, error }) {
     }
 
     return (
-        <div className='w-full md:flex relative'>
+        <div className='w-100 md:flex relative 2xl:mx-56'>
             <div className='px-5 pt-5 relative w-full md:w-1/3'>
                 <IconButton className="last:mr-0 absolute right-2 top-2 z-30" onClick={addToFavourites} icon={FaHeart} iconProps={{
                     className: classNames({
@@ -52,7 +52,9 @@ export default function SingleProductPage({ product, error }) {
                         "animate-ping duration-200": false,
                     })
                 }} />
-                <ProductImageCarousel images={images} />
+                <div className='w-full'>
+                    <ProductImageCarousel images={images} />
+                </div>
             </div>
             <div className='p-5 w-full md:w-2/3 md:ml-5 relative'>
                 <IconButton className="last:mr-0 absolute right-2 top-2 z-30" onClick={shareProduct} icon={FaShare} />
