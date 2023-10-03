@@ -15,6 +15,8 @@ module.exports = {
 				"100vw": "100vw",
 			},
 			height: {
+				"8vh": "8vh",
+				"92vh": "92vh",
 				"50vh": "50vh",
 				"100vh": "100vh",
 			},

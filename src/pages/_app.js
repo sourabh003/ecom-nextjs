@@ -9,10 +9,10 @@ import NextNprogress from "nextjs-progressbar";
 import "rsuite/dist/rsuite.min.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { OPEN_MODAL } from "@/redux/types/common";
 import { getData } from "@/utils";
 import { USER } from "@/utils/constants";
 import { SET_USER } from "@/redux/types/auth";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const App = ({ Component, pageProps }) => {
 	const router = useRouter();

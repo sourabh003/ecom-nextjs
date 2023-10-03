@@ -25,7 +25,7 @@ export default function CustomButton({
 				"transition 300",
 				{ "bg-blue-500": variant === "primary" },
 				{ "hover:bg-blue-700": variant === "primary" && !disabled && !loading },
-				{ "bg-white text-black": variant === "secondary" },
+				{ "bg-white text-gray-800": variant === "secondary" },
 				{
 					"hover:bg-gray-300": variant === "secondary" && !disabled && !loading,
 				},
