@@ -2,9 +2,9 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { FaHeart } from "react-icons/fa";
-import CustomButton from "./CustomButton";
+import CustomButton from "../CustomButton";
 import { useRouter } from "next/router";
-import IconButton from "./IconButton";
+import IconButton from "../IconButton";
 
 /**
  * 
@@ -67,10 +67,10 @@ export default function ProductCard({
 
     return (
         <div
-            onClick={() => router.push(`/products/${_id}`)}
+            onClick={() => router.push(`/products/${slug}`)}
             className="border-solid border p-2 m-2 flex md:flex-col hover:shadow rounded-lg pointer relative"
         >
-            <IconButton onClick={addToFavourites} icon={FaHeart} iconProps={{
+            <IconButton onClick={addToFavourites} icon={FaHeart} className="absolute z-20 right-1" iconProps={{
                 className: classNames({
                     "text-red-500": isFavourite,
                     "animate-ping duration-200": isAnimation,

@@ -77,6 +77,16 @@ body {
 	}
 }
 
+.control-arrow {
+	height: fit-content !important;
+	top: 45% !important;
+	border-radius: 50% !important;
+	width: 40px !important;
+	display: grid !important;
+	place-items: center !important;
+	height: 40px !important;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 	.cart-sidebar {

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Cateogories() {
-  return (
-    <div>Cateogories</div>
-  )
+    useEffect(() => {
+        document.title = "Shop by categories | Ecom"
+    }, []);
+    return (
+        <div>Cateogories</div>
+    )
 }

@@ -7,10 +7,14 @@ class ShopService {
 
 	getProducts(data) {
 		return apiGet(generateURL("/products"), data);
+	}
+
+	getSingleProduct(data) {
+		return apiGet(generateURL(`/products/${data}`));
     }
     
-    getSingleProduct(data) {
-		return apiGet(generateURL(`/products/${data}`));
+	getBrands() {
+		return apiGet(generateURL(`/brands`));
 	}
 }
 

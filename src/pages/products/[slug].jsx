@@ -1,22 +1,21 @@
 import shopService from '@/redux/services/shop.service';
 import Error from 'next/error';
-import React, { useEffect, useMemo } from 'react'
+import { useEffect } from 'react';
 import Custom404 from '../404';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { ERROR_PRODUCT_NOT_FOUND } from '@/utils/constants';
 import ProductImageCarousel from '@/components/ProductImageCarousel';
-import { FaArrowRight, FaCartPlus, FaHeart, FaShare, FaShoppingBag } from 'react-icons/fa';
+import { FaCartPlus, FaHeart, FaShare, FaShoppingBag } from 'react-icons/fa';
 import classNames from 'classnames';
 import IconButton from '@/components/IconButton';
-import toast from 'react-hot-toast';
 import CustomButton from '@/components/CustomButton';
 
 export default function SingleProductPage({ product, error }) {
     const router = useRouter()
 
     useEffect(() => {
-        console.log({ product, error })
-    }, [product, error])
+        document.title = `${product.name} | Ecom`
+    }, [product])
 
     const {
         brand,
@@ -65,7 +64,7 @@ export default function SingleProductPage({ product, error }) {
                 </div>
                 {discount ? (
                     <>
-                        <div className="bg-primary text-white w-fit px-2 rounded-xl text-xl mt-5">{discount.totalDiscount}% Discount</div>
+                        <div className="bg-primary text-white w-fit px-2 rounded-xl text-md mt-5">{discount.totalDiscount}% Discount</div>
                         <div className="flex mt-2">
                             <div className='text-3xl text-gray-400'><strike>${price}</strike></div>
                             <div className='text-3xl font-bold ml-4'>${discount.discountPrice}</div>
@@ -97,18 +96,21 @@ export default function SingleProductPage({ product, error }) {
                 <div>
                     <div className='mt-8 text-xl font-bold'>Specifications</div>
                     <table className='mt-2 border border-solid w-full md:w-fit text-left'>
-                        {Object.entries(attributes).map(([key, value]) => {
-                            return (
-                                <tr>
-                                    <th className='p-2 border border-solid'>
-                                        <div>{key}</div>
-                                    </th>
-                                    <td className='p-2 border border-solid'>
-                                        <div>{value}</div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
+                        <tbody>
+
+                            {Object.entries(attributes).map(([key, value]) => {
+                                return (
+                                    <tr key={`${key}-${value}`}>
+                                        <th className='p-2 border border-solid'>
+                                            <div>{key}</div>
+                                        </th>
+                                        <td className='p-2 border border-solid'>
+                                            <div>{value}</div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
                     </table>
                 </div>
 
@@ -147,14 +149,16 @@ export default function SingleProductPage({ product, error }) {
     )
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = async ({ query }) => {
     /** Single product api to be called here */
     try {
-        const id = ctx.query.id;
-        const { data: product } = await shopService.getSingleProduct(id)
+        const { slug } = query;
+        const { data: product } = await shopService.getSingleProduct(slug)
         if (!product) throw new Error(ERROR_PRODUCT_NOT_FOUND)
         return { props: { product } };
     } catch (error) {
         return { props: { error: error?.props || error?.message || error } }
     }
 };
+
+

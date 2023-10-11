@@ -48,7 +48,7 @@ export default function Header() {
     return (
         <div
             className={classNames(
-                'h-8vh',
+                'md:h-8vh',
                 "cus-container",
                 "py-3",
                 "px-5",

@@ -92,7 +92,7 @@ export default function Login({ formType }) {
 			{[...(form === FormType.LOGIN ? loginFields : signupFields)].map(
 				(props) => (
 					<CustomInput
-						{...props}
+                        {...props}
 						onChange={handleChange}
 						key={props.name}
 						classes="mt-5 first:mt-0"

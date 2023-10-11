@@ -6,7 +6,7 @@ export default function ProductImageCarousel({
 }) {
     return (
         <Carousel showStatus={false}>
-            {images.map(image => (<img src={image} />))}
+            {images.map(image => (<img key={image} src={image} />))}
         </Carousel>
     )
 }
