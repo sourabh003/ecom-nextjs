@@ -36,20 +36,22 @@ import IconButton from "../IconButton";
  */
 
 export default function ProductCard({
-    brand,
-    category,
-    _id,
-    name,
-    slug,
-    thumbnail,
-    images = [],
-    description,
-    attributes,
-    price = "100",
-    discount = {
-        discountPrice: "50",
-        totalDiscount: 50,
+    product: {
+        brand,
+        _id,
+        name,
+        slug,
+        thumbnail,
+        price = "100",
+        discount = {
+            discountPrice: "50",
+            totalDiscount: 50,
+        },
+        productId
     },
+    addToCartHandler = () => { },
+    addToFavouritesHandler = () => { },
+    isLoading = false
 }) {
     const [isFavourite, toggleFavourite] = useState(false);
     const [isAnimation, triggerAnimation] = useState(false);
@@ -107,6 +109,9 @@ export default function ProductCard({
 
                 <div className="w-full flex justify-end">
                     <CustomButton
+                        id={productId}
+                        loading={isLoading === productId}
+                        onClick={addToCartHandler}
                         variant="dark"
                         className="p-3 w-full rounded-lg mt-3 text-gray-100"
                     >

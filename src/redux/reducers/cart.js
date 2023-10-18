@@ -18,9 +18,11 @@ export default function cartReducer(state = initialState, action) {
 			return { ...state, isCartDrawerOpen: !state.isCartDrawerOpen };
 
 		case types.GET_CART:
+		case types.UPDATE_CART:
 			return { ...state, cartLoading: true };
 
 		case types.GET_CART_SUCCESS:
+		case types.UPDATE_CART_SUCCESS:
 			return {
 				...state,
 				cartLoading: false,
@@ -33,13 +35,8 @@ export default function cartReducer(state = initialState, action) {
 			};
 
 		case types.GET_CART_FAILED:
+		case types.UPDATE_CART_FAILED:
 			return { ...state, cartLoading: false };
-
-		// case types.ADD_ITEM_TO_CART:
-		// 	return { ...state, isCartDrawerOpen: !state.isCartDrawerOpen };
-
-		// case types.REMOVE_ITEM_FROM_CART:
-		// 	return { ...state, isCartDrawerOpen: !state.isCartDrawerOpen };
 
 		default:
 			return { ...state };

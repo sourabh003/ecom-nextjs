@@ -52,7 +52,10 @@ export const apiDelete = (url, data, headers = {}) => {
 };
 
 export const apiPut = (url, data, headers = {}) => {
-	const updatedURL = !data ? url : `${url}/${data.id}`;
+	if (!data.id) {
+		return apiReq("put", url, data, headers);
+	}
+	const updatedURL = `${url}/${data.id}`;
 	return apiReq("put", updatedURL, data.data, headers);
 };
 
@@ -121,4 +124,8 @@ export const getHeaders = () => {
 		return { token };
 	}
 	return {};
+};
+
+export const errorHandler = (error) => {
+	return error?.message || error;
 };
