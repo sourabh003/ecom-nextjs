@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ItemCounter from "./ItemCounter";
 import { updateCart } from "@/redux/actions/cart";
 import toast from "react-hot-toast";
+import { errorHandler } from "@/utils";
 
 export default function CartDrawer() {
     const dispatch = useDispatch();

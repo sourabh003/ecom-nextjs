@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import React, { useState } from "react";
-import toast from "react-hot-toast";
+import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import CustomButton from "../CustomButton";
 import { useRouter } from "next/router";

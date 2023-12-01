@@ -59,8 +59,11 @@ export default function SingleProductPage({ product, error }) {
                 <IconButton className="last:mr-0 absolute right-2 top-2 z-30" onClick={shareProduct} icon={FaShare} />
                 <div className="text-2xl font-bold">{name}</div>
                 <div className="text-xl font-bold mt-2 text-gray-400">{description}</div>
-                <div className="w-fit mt-2 p-1">
-                    <img src={brand.icon} alt={brand.name} />
+                <div className="w-fit mt-2 pr-3 rounded flex items-center border ">
+                    <img className='w-10 p-1' src={brand.icon} alt={brand.name} />
+                    <div className='text-sm'>
+                        {brand.name}
+                    </div>
                 </div>
                 {discount ? (
                     <>
